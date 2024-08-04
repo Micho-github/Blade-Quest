@@ -1,0 +1,254 @@
+.app {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.background-video {
+  background: center no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  z-index: -10;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.header {
+  position: relative;
+  height: 10vh;
+  display: flex;
+  align-items: center;
+  justify-items: center;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.Main {
+  position: relative;
+  padding-top: 10vh;
+  height: 80vh;
+  display: flex;
+  justify-items: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer {
+  position: relative;
+  height: 10vh;
+  display: flex;
+  align-items: center;
+  justify-items: center;
+}
+.Navbar {
+  position: relative;
+  display: flex;
+  padding: 5px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+.game-logo{
+  margin-left: 20px;
+}
+.DropDownMenu {
+  padding: 2vh 1vh 0vh 1vh;
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  left: 0;
+  top: 10vh;
+  color: white;
+  background: #2a2929;
+  animation: animate 1s forwards;
+  font-size: 2rem;
+}
+.DropDownMenu ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  gap: 0.5rem;
+}
+
+.DropDownMenu button {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  justify-content: center;
+  justify-items: center;
+  padding: 1rem;
+  width: 300px;
+  opacity: 0;
+  animation: pop 0.5s forwards;
+  animation-delay: var(--delay);
+  position: relative;
+}
+.DropDownMenu button:hover {
+  color: rgb(252, 160, 1);
+}
+.closeMenu {
+  animation: close 1s forwards;
+}
+
+.curtain_1 {
+  position: absolute;
+  background: #1a1a1a;
+  width: 55%;
+  height: 100%;
+  left: 0;
+  overflow: hidden;
+  animation: movein_1 3s forwards;
+}
+
+.curtain_2 {
+  position: absolute;
+  background: #1a1a1a;
+  width: 55%;
+  height: 100%;
+  right: 0;
+  overflow: hidden;
+  animation: movein_2 3s forwards;
+}
+
+.sword_1 {
+  position: absolute;
+  width: 300px;
+  height: 100%;
+  background-image: url(./Assets/images/sword_1.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  top: -100%;
+  right: -100%;
+  z-index: 10;
+  animation: swordin_1 3s 3s forwards, pulse 3s 2s infinite;
+}
+
+.sword_2 {
+  position: absolute;
+  width: 300px;
+  height: 100%;
+  background-image: url(./Assets/images/sword_2.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  top: -100%;
+  left: -100%;
+  z-index: 10;
+  animation: swordin_2 3s 3s forwards, pulse 3s 2s infinite;
+}
+
+.StartBtn.close {
+  animation: startbtnclose 3s forwards;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 100%;
+    scale: 100%;
+  }
+  50% {
+    opacity: 100%;
+    scale: 105%;
+  }
+  100% {
+    opacity: 100%;
+    scale: 100%;
+  }
+}
+
+@keyframes animate {
+  from {
+    width: 0%;
+    opacity: 0%;
+  }
+  to {
+    width: 100%;
+    opacity: 100%;
+  }
+}
+
+@keyframes close {
+  from {
+    width: 100%;
+    opacity: 100%;
+  }
+  to {
+    width: 0%;
+    opacity: 0%;
+  }
+}
+
+@keyframes pop {
+  from {
+    opacity: 0;
+    top: 20vh;
+  }
+  to {
+    opacity: 100%;
+    top: 0;
+  }
+}
+
+@keyframes movein_1 {
+  from {
+    left: -100%;
+  }
+  to {
+    left: 0;
+  }
+}
+
+@keyframes movein_2 {
+  from {
+    right: -100%;
+  }
+  to {
+    right: 0;
+  }
+}
+
+@keyframes startbtnclose {
+  from {
+    opacity: 100%;
+  }
+  to {
+    opacity: 0%;
+  }
+}
+
+@keyframes swordin_1 {
+  from {
+    top: -100%;
+    right: -100%;
+  }
+  to {
+    top: 30%;
+    right: 50%;
+    transform: translateX(50%);
+  }
+}
+
+@keyframes swordin_2 {
+  from {
+    top: -100%;
+    left: -100%;
+  }
+  to {
+    top: 30%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
