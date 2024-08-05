@@ -2,13 +2,16 @@ const express = require('express');
 const router = express.Router()
 const cors = require('cors')
 const { test,signupUser,loginUser, CheckUser,getProfile,logoutUser } = require('../controllers/authController')
+
 //middleware
 router.use(
-    cors({
-        origin: 'https://bladequest.vercel.app',
-        methods: ['POST','GET','OPTIONS'],
-        credentials:true,
-    })
+    cors(
+        {
+            origin: ["https://bladequest.vercel.app"],
+            methods: ["POST", "GET"],
+            credentials: true
+        }
+    )
 )
 
 router.get('/',test)

@@ -8,13 +8,13 @@ const cookieParser = require("cookie-parser");
 const app = express();
 
 // Use CORS middleware
-app.use(
-  cors({
-    origin: "https://bladequest.vercel.app",
-    methods: ["POST", "GET", "OPTIONS"],
-    credentials: true,
-  })
-);
+app.use(cors(
+    {
+        origin: ["https://bladequest.vercel.app"],
+        methods: ["POST", "GET"],
+        credentials: true
+    }
+));
 
 mongoose
   .connect(process.env.MONGO_URL)
