@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./App.css";
 import Footer from "./components/Structure/Footer";
 import Header from "./components/Structure/Header";
@@ -7,21 +7,11 @@ import MusicPlayer from "./components/Music Player/Musicplayer";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { UserContextProvider } from "./context/userContext";
-import axios from "axios";
 
 function App() {
   const [Page, SetPage] = useState("LandingPage");
   const [IsStarted, SetIsStarted] = useState(false);
-  useEffect(() => {
-    axios
-      .get("/profile")
-      .then((response) => {
-        console.log("Profile:", response.data);
-      })
-      .catch((error) => {
-        console.error("Error fetching profile:", error);
-      });
-  }, []);
+  
   return (
     <UserContextProvider>
       <div className="app">
