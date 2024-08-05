@@ -4,13 +4,9 @@ import Footer from "./components/Structure/Footer";
 import Header from "./components/Structure/Header";
 import Main from "./components/Structure/Main";
 import MusicPlayer from "./components/Music Player/Musicplayer";
-import axios from "axios";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { UserContextProvider } from "./context/userContext";
-
-axios.defaults.baseURL = "https://bladequest-api.vercel.app/";
-axios.defaults.withCredentials = true;
 
 function App() {
   const [Page, SetPage] = useState("LandingPage");

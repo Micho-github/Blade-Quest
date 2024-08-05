@@ -15,9 +15,7 @@ export function UserContextProvider({ children }) {
   const fetchProfile = async () => {
     try {
       setLoading(true);
-      const { data } = await axios.get("/profile", {
-        withCredentials: true,
-      });
+      const { data } = await axios.get("/profile");
       setUser(data);
     } catch (error) {
       console.error("Error fetching profile:", error);
