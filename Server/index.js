@@ -7,9 +7,6 @@ const cookieParser = require('cookie-parser')
 
 //express app
 const app = express();
-app.use(cors({
-  origin: 'https://bladequest.vercel.app',
-}));
 
 mongoose.connect(process.env.MONGO_URL)
 .then(() => console.log('Database Connected'))
