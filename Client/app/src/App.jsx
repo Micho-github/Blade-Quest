@@ -11,6 +11,16 @@ import { UserContextProvider } from "./context/userContext";
 function App() {
   const [Page, SetPage] = useState("LandingPage");
   const [IsStarted, SetIsStarted] = useState(false);
+  useEffect(() => {
+    axios
+      .get("/profile")
+      .then((response) => {
+        console.log("Profile:", response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching profile:", error);
+      });
+  }, []);
   return (
     <UserContextProvider>
       <div className="app">
