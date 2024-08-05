@@ -31,7 +31,7 @@ export default function LoginForm() {
         );
 
         const { data } = await axios.post(
-          "https://bladequest-api.vercel.app/login",
+          "/login",
           {
             email: values.Email,
             password: values.Password,
@@ -39,7 +39,6 @@ export default function LoginForm() {
           },
           {
             cancelToken: source.token,
-            withCredentials: true,
           }
         );
         clearTimeout(timeoutId);
