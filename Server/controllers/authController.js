@@ -103,16 +103,7 @@ const loginUser = async (req, res) => {
         {},
         (err, token) => {
           if (err) throw err;
-          res
-            .cookie("token", token, {
-              httpOnly: true,
-              secure: true,
-              sameSite: "Strict",
-            })
-            .json({
-              success: true,
-              user,
-            });
+          res.cookie("token", token).json(user);
         }
       );
       // return res.json({
@@ -154,18 +145,25 @@ const CheckUser = async (req, res) => {
 };
 
 const getProfile = (req, res) => {
-  const { token } = req.cookies;
+  const token = req.cookies.token; // Directly access token from cookies
 
-  if (token) {
-    jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
-      if (err) {
-        return res.status(401).json({ message: "Invalid token" });
-      }
-      return res.json(user);
-    });
-  } else {
-    return res.status(401).json({ message: "No token provided" });
+  if (!token) {
+    return res.status(401).json({ message: "No token provided" }); // Early return if no token
   }
+
+  jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
+    if (err) {
+      console.error("Token verification error:", err); // Log error for debugging
+      return res.status(401).json({ message: "Invalid token" });
+    }
+
+    // If token is valid, return user info
+    return res.json({
+      email: decoded.email,
+      id: decoded.id,
+      name: decoded.name,
+    });
+  });
 };
 
 const logoutUser = (req, res) => {
