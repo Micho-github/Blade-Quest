@@ -5,7 +5,7 @@ const { test,signupUser,loginUser, CheckUser,getProfile,logoutUser } = require('
 //middleware
 router.use(
     cors({
-        origin: 'https://bladequest.vercel.app/',
+        origin: 'https://bladequest.vercel.app',
         methods: ['POST','GET'],
         credentials:true,
     })
