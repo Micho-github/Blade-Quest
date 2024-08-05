@@ -7,6 +7,15 @@ const cookieParser = require("cookie-parser");
 //express app
 const app = express();
 
+// Use CORS middleware
+app.use(
+  cors({
+    origin: ["*"],
+    methods: ["POST", "GET"],
+    credentials: true,
+  })
+);
+
 mongoose
   .connect(process.env.MONGO_URL)
   .then(() => console.log("Database Connected"))
