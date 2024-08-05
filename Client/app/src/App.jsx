@@ -8,6 +8,10 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { UserContextProvider } from "./context/userContext";
 
+// import axios from "axios";
+// axios.defaults.baseURL = "https://bladequest-api.vercel.app";
+// axios.defaults.withCredentials = true;
+
 function App() {
   const [Page, SetPage] = useState("LandingPage");
   const [IsStarted, SetIsStarted] = useState(false);

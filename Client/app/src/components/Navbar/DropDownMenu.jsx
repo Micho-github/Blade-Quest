@@ -7,6 +7,7 @@ import { FaBug } from "react-icons/fa";
 import { IoSettingsSharp } from "react-icons/io5";
 import SettingsModal from "../Modals/SettingsModal";
 import { UserContext } from "../../context/userContext";
+import axios from "axios";
 
 export default function DropDownMenu({ Isopen, SetIsOpen, isClosing }) {
   const [ModalIsOpen, SetModalIsOpen] = React.useState(false);
@@ -43,19 +44,19 @@ export default function DropDownMenu({ Isopen, SetIsOpen, isClosing }) {
                 </div>
               </button>
             </li>
-            {/* {user && ( */}
-            <li>
-              <button
-                onClick={logout}
-                style={{ "--delay": `${1 + 6 * 0.3}s`, color: "#ff5722" }}
-              >
-                Logout
-                <div>
+            {user && (
+              <li>
+                <button
+                  onClick={logout}
+                  style={{ "--delay": `${1 + 6 * 0.3}s`, color:"#ff5722" }}
+                >
+                  Logout
+                  <div>
                   <IoLogOut />
-                </div>
-              </button>
-            </li>
-            {/* )} */}
+                  </div>
+                </button>
+              </li>
+            )}
           </ul>
         </div>
         {ModalIsOpen && <SettingsModal SetModalIsOpen={SetModalIsOpen} />}
