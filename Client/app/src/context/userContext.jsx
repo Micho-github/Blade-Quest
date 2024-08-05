@@ -1,5 +1,6 @@
 import React, { createContext, useEffect, useState } from "react";
 import axios from "axios";
+import Cookies from 'js-cookie';
 
 export const UserContext = createContext(undefined);
 
@@ -15,7 +16,17 @@ export function UserContextProvider({ children }) {
   const fetchProfile = async () => {
     try {
       setLoading(true);
-      const { data } = await axios.get("/profile");
+      const token = Cookies.get('token');
+
+      if (!token) {
+        throw new Error('Authorization token is missing.');
+      }
+
+      const { data } = await axios.get("/profile",{
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    });
       setUser(data);
     } catch (error) {
       console.error('Error fetching profile:', error);
