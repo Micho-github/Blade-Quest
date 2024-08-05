@@ -5,6 +5,20 @@
   overflow: hidden;
 }
 
+.grecaptcha-badge { visibility: hidden; }
+
+.captcha-text{
+  color: rgb(213, 213, 213);
+  text-align: start;
+  font-size: 15px;
+  margin-top: 10px;
+  margin-left: 5px;
+}
+.captcha-text a{
+color: rgb(45, 108, 217);
+font-weight: 700;
+text-decoration:none;
+}
 .background-video {
   background: center no-repeat;
   background-attachment: fixed;

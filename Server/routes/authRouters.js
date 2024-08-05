@@ -7,7 +7,7 @@ const { test,signupUser,loginUser, CheckUser,getProfile,logoutUser } = require('
 router.use(
     cors(
         {
-            origin: ["https://bladequest.vercel.app"],
+            origin: ["https://bladequest.vercel.app","http://localhost:3000"],
             methods: ["POST", "GET"],
             credentials: true
         }

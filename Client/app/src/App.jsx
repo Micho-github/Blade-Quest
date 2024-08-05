@@ -9,6 +9,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { UserContextProvider } from "./context/userContext";
 
 import axios from "axios";
+// axios.defaults.baseURL = "http://localhost:8000";
 axios.defaults.baseURL = "https://bladequest-api.vercel.app";
 axios.defaults.withCredentials = true;
 
@@ -20,7 +21,7 @@ function App() {
       <div className="app">
         {Page === "LandingPage" && (
           <>
-            <video autoPlay loop muted playsInline className="background-video">
+            <video autoPlay loop muted playsInline className={`background-video ${ IsStarted && 'move'}`}>
               <source
                 src={require("./Assets/videos/the-dragon-slayer-berserk.1920x1080.mp4")}
                 type="video/mp4"

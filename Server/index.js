@@ -8,16 +8,17 @@ const cookieParser = require("cookie-parser");
 const app = express();
 
 // Use CORS middleware
+//,"http://localhost:3000"
 app.use(cors(
     {
-        origin: ["https://bladequest.vercel.app"],
+        origin: ["https://bladequest.vercel.app","http://localhost:3000"],
         methods: ["POST", "GET"],
         credentials: true
     }
 ));
 
 mongoose
-  .connect(process.env.MONGO_URL, { useNewUrlParser: true, useUnifiedTopology: true })
+  .connect(process.env.MONGO_URL, {})
   .then(() => console.log("Database Connected"))
   .catch((err) => {
     console.error("Database not Connected:", err.message);

@@ -122,6 +122,7 @@ export default function LoginForm() {
       <div className="passwd">
         <input
           type={showPassword ? "text" : "password"}
+          id="Password"
           name="Password"
           className={`${
             formik.errors.Password && formik.touched.Password
@@ -130,7 +131,6 @@ export default function LoginForm() {
               ? "valid"
               : ""
           }`}
-          id="Password"
           onChange={(e) => HandlePasswordChange(e)}
           onBlur={formik.handleBlur}
           value={formik.values.Password}
@@ -146,6 +146,11 @@ export default function LoginForm() {
         {formik.touched.Password && formik.errors.Password && (
           <div className="error">{formik.errors.Password}</div>
         )}
+        <div className="captcha-text">
+        This site is protected by reCAPTCHA and the Google&nbsp;
+        <a href="https://policies.google.com/privacy">Privacy Policy</a> and&nbsp;
+        <a href="https://policies.google.com/terms" >Terms of Service</a> apply.
+        </div>
         {SubmitError ? (
           <div className="error" style={{ paddingTop: "10px" }}>
             {SubmitError}
