@@ -13,10 +13,10 @@ export default function LoginForm() {
   const [SubmitLoading, SetSubmitLoading] = React.useState(false);
   const [SubmitError, SetSubmitError] = React.useState("");
   const { fetchProfile } = React.useContext(UserContext);
-  
+
   const handleSubmit = async (values) => {
     SetSubmitLoading(true);
-    SetSubmitError("")
+    SetSubmitError("");
 
     const source = axios.CancelToken.source();
     const timeoutId = setTimeout(() => {
@@ -24,44 +24,51 @@ export default function LoginForm() {
     }, 15000);
 
     try {
-      if(window.grecaptcha){
-      const token = await window.grecaptcha.execute("6Lf7xh4qAAAAAEe3mfD91ctZznBBkCMUD00SgKRI", { action: "login" });
+      if (window.grecaptcha) {
+        const token = await window.grecaptcha.execute(
+          "6Lf7xh4qAAAAAEe3mfD91ctZznBBkCMUD00SgKRI",
+          { action: "login" }
+        );
 
-      const { data } = await axios.post("/login", {
-        email: values.Email,
-        password: values.Password,
-        recaptchaToken: token,
-        
-      },{
-        cancelToken: source.token
-      });
-      clearTimeout(timeoutId);
+        const { data } = await axios.post(
+          "/login",
+          {
+            email: values.Email,
+            password: values.Password,
+            recaptchaToken: token,
+          },
+          {
+            cancelToken: source.token,
+            withCredentials: true,
+          }
+        );
+        clearTimeout(timeoutId);
 
-      if (data.success === false) {
-        SetSubmitError(data.error);
-        console.log(data.error);
+        if (data.success === false) {
+          SetSubmitError(data.error);
+          console.log(data.error);
+        } else {
+          formik.resetForm();
+          toast.success("login Successfull!", { theme: "dark" });
+          console.log("login Successfull!");
+          fetchProfile();
+        }
       } else {
-        formik.resetForm();
-        toast.success("login Successfull!", { theme: "dark" });
-        console.log("login Successfull!");
-        fetchProfile();
+        toast.error("Recaptcha not loaded yet, Please check your connection.", {
+          theme: "dark",
+        });
       }
-    }else{
-      toast.error("Recaptcha not loaded yet, Please check your connection.", {
-        theme: "dark",
-      })
-    }
     } catch (error) {
       if (axios.isCancel(error)) {
         console.error("Request canceled:", error.message);
         toast.error(error.message, { theme: "dark" });
       } else {
-      console.error("An error occurred:", error);
-      toast.error("Error connecting to server, please try again later.", {
-        theme: "dark",
-      });
+        console.error("An error occurred:", error);
+        toast.error("Error connecting to server, please try again later.", {
+          theme: "dark",
+        });
+      }
     }
-  }
     setTimeout(() => {
       SetSubmitLoading(false);
     }, 1000);
@@ -140,8 +147,11 @@ export default function LoginForm() {
         {formik.touched.Password && formik.errors.Password && (
           <div className="error">{formik.errors.Password}</div>
         )}
-        {SubmitError ?
-        <div className="error" style={{paddingTop:"10px"}}>{SubmitError}</div>: null}
+        {SubmitError ? (
+          <div className="error" style={{ paddingTop: "10px" }}>
+            {SubmitError}
+          </div>
+        ) : null}
       </div>
       <div className="forgot-pwd">
         <div className="text">Forgot your Password?</div>
