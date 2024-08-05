@@ -7,6 +7,7 @@ import MusicPlayer from "./components/Music Player/Musicplayer";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { UserContextProvider } from "./context/userContext";
+import axios from "axios";
 
 function App() {
   const [Page, SetPage] = useState("LandingPage");
