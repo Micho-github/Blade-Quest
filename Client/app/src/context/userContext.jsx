@@ -43,7 +43,7 @@ export function UserContextProvider({ children }) {
   const logout = async () => {
     try {
       await axios.post('/logout');
-      localStorage.removeItem('Auth_token');
+      // localStorage.removeItem('Auth_token');
       setUser(null);
       window.location.reload();
     } catch (error) {

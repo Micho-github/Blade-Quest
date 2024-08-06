@@ -12,7 +12,8 @@ app.use(cors(
     {
         origin: ["https://bladequest.vercel.app","http://localhost:3000"],
         methods: ["POST", "GET"],
-        credentials: true
+        credentials: true,
+        allowedHeaders: ['Content-Type', 'Authorization'],
     }
 ));
 
