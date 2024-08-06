@@ -102,13 +102,7 @@ const loginUser = async (req, res) => {
         (err, token) => {
           if (err) throw err;
 
-          res.cookie('Auth_token', token, {
-            httpOnly: true,
-            secure: isProduction,
-            sameSite: 'None',
-            maxAge: 7 * 24 * 60 * 60 * 1000,
-            path: '/'
-          }).json(user);
+          res.json({ token, user });
         }
       );
       // return res.json({
@@ -131,16 +125,15 @@ const loginUser = async (req, res) => {
 
 
 const getProfile = (req, res) => {
-  const token = req.headers.authorization?.split(" ")[1]; // Get the token from the Authorization header
-  console.log("Token from cookie:", token);
+  const token = req.headers.authorization?.split(" ")[1];
 
   if (!token) {
-    return res.status(401).json({ message: "No token provided" }); // Early return if no token
+    return res.status(401).json({ message: "No token provided" });
   }
 
   jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
     if (err) {
-      console.error("Token verification error:", err); // Log error for debugging
+      console.error("Token verification error:", err);
       return res.status(401).json({ message: "Invalid token" });
     }
 

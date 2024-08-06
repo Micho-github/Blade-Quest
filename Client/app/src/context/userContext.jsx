@@ -1,6 +1,5 @@
 import React, { createContext, useEffect, useState } from "react";
 import axios from "axios";
-import Cookies from 'js-cookie';
 
 export const UserContext = createContext(undefined);
 
@@ -16,7 +15,7 @@ export function UserContextProvider({ children }) {
   const fetchProfile = async () => {
     try {
       setLoading(true);
-      const Auth_token = Cookies.get('Auth_token');
+      const Auth_token = localStorage.getItem('Auth_token');
 
       console.log('Token from cookie:', Auth_token);
 
@@ -43,7 +42,7 @@ export function UserContextProvider({ children }) {
   const logout = async () => {
     try {
       await axios.post('/logout');
-      // localStorage.removeItem('Auth_token');
+      localStorage.removeItem('Auth_token');
       setUser(null);
       window.location.reload();
     } catch (error) {
