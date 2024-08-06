@@ -17,12 +17,13 @@ export function UserContextProvider({ children }) {
     try {
       setLoading(true);
       const token = Cookies.get('token');
+      console.log('Token from cookie:', token);
 
       if (!token) {
         throw new Error('Authorization token is missing.');
       }
 
-      const { data } = await axios.post("/profile",{
+      const { data } = await axios.get("/profile",{
       headers: {
         'Authorization': `Bearer ${token}`
       }

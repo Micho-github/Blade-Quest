@@ -18,7 +18,7 @@ router.get('/',test)
 router.post('/signup',signupUser)
 router.post('/login',loginUser)
 router.post('/checkusername',CheckUser)
-router.post('/profile',getProfile)
+router.get('/profile',getProfile)
 router.post('/logout',logoutUser)
 
 module.exports = router
