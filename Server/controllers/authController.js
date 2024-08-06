@@ -154,7 +154,8 @@ const CheckUser = async (req, res) => {
 
 const getProfile = (req, res) => {
   const token = req.cookies.token; // Directly access token from cookies
-
+  console.log('Token from cookie:', token);
+  
   if (!token) {
     return res.status(401).json({ message: "No token provided" }); // Early return if no token
   }

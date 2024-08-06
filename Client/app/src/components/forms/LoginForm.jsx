@@ -49,6 +49,7 @@ export default function LoginForm() {
         } else {
           formik.resetForm();
           toast.success("login Successfull!", { theme: "dark" });
+          Cookies.set('token', data.token, { secure: true, sameSite: 'None' });
           console.log("login Successfull!");
           fetchProfile();
         }
