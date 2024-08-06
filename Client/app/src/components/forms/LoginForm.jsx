@@ -50,7 +50,7 @@ export default function LoginForm() {
           formik.resetForm();
           toast.success("login Successfull!", { theme: "dark" });
           console.log("login Successfull!");
-          Cookies.set('Auth_token', data.token, { secure: true, sameSite: 'None' });
+          console.log(data.token);
           fetchProfile();
         }
       } else {

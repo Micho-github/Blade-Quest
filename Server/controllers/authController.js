@@ -1,11 +1,8 @@
 const User = require("../Models/user");
 const axios = require("axios");
 const jwt = require("jsonwebtoken");
-
 const { hashPassword, comparePassword } = require("../helpers/auth");
-const test = (req, res) => {
-  res.json("server is up and running.");
-};
+
 
 //SignUp Endpoint
 const signupUser = async (req, res) => {
@@ -97,6 +94,7 @@ const loginUser = async (req, res) => {
     //check if passwords match
     const match = await comparePassword(password, user.password);
     if (match) {
+      const isProduction = process.env.NODE_ENV === 'production';
       jwt.sign(
         { email: user.email, id: user._id, name: user.username },
         process.env.JWT_SECRET,
@@ -105,10 +103,9 @@ const loginUser = async (req, res) => {
           if (err) throw err;
           res.cookie('Auth_token', token, {
             httpOnly: true,
-            secure: true,
+            secure: isProduction,
             sameSite: 'None',
-            maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
-            domain: 'bladequest.vercel.app', // Ensure this matches your Vercel subdomain
+            maxAge: 7 * 24 * 60 * 60 * 1000,
             path: '/'
           }).json(user);
         }
@@ -130,26 +127,7 @@ const loginUser = async (req, res) => {
   }
 };
 
-//Check Username Endpoint
-const CheckUser = async (req, res) => {
-  try {
-    const { username } = req.body;
-    // check if user exists
-    const user = await User.findOne({ username: username.toLowerCase() });
-    if (user) {
-      return res.json({
-        success: false,
-        error: "Username already taken",
-      });
-    }
-    return res.json({
-      success: true,
-      message: "Username Available",
-    });
-  } catch (error) {
-    console.log(error);
-  }
-};
+
 
 const getProfile = (req, res) => {
   const token = req.headers.authorization?.split(" ")[1]; // Get the token from the Authorization header
@@ -180,10 +158,8 @@ const logoutUser = (req, res) => {
 };
 
 module.exports = {
-  test,
   signupUser,
   loginUser,
-  CheckUser,
   getProfile,
   logoutUser,
 };
