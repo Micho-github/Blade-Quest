@@ -101,6 +101,11 @@ const loginUser = async (req, res) => {
         { expiresIn: "7d" },
         (err, token) => {
           if (err) throw err;
+
+          res.setHeader("Access-Control-Allow-Credentials", "true");
+          res.setHeader("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,PATCH,OPTIONS");
+          res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+
           res.cookie('Auth_token', token, {
             httpOnly: true,
             secure: isProduction,
