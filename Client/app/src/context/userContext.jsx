@@ -23,11 +23,7 @@ export function UserContextProvider({ children }) {
         throw new Error('Authorization token is missing.');
       }
 
-      const { data } = await axios.get("/profile",{
-      headers: {
-        'Authorization': `Bearer ${token}`
-      }
-    });
+      const { data } = await axios.get("/profile");
       setUser(data);
     } catch (error) {
       console.error('Error fetching profile:', error);

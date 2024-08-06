@@ -21,7 +21,13 @@ function App() {
       <div className="app">
         {Page === "LandingPage" && (
           <>
-            <video autoPlay loop muted playsInline className={`background-video ${ IsStarted && 'move'}`}>
+            <video
+              autoPlay
+              loop
+              muted
+              playsInline
+              className={`background-video ${IsStarted && "move"}`}
+            >
               <source
                 src={require("./Assets/videos/the-dragon-slayer-berserk.1920x1080.mp4")}
                 type="video/mp4"
