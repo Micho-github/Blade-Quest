@@ -4,7 +4,7 @@ const jwt = require("jsonwebtoken");
 
 const { hashPassword, comparePassword } = require("../helpers/auth");
 const test = (req, res) => {
-  res.json("test is working");
+  res.json("server is up and running.");
 };
 
 //SignUp Endpoint
@@ -100,7 +100,7 @@ const loginUser = async (req, res) => {
       jwt.sign(
         { email: user.email, id: user._id, name: user.username },
         process.env.JWT_SECRET,
-        {},
+        { expiresIn: '7d' },
         (err, token) => {
           if (err) throw err;
           res
@@ -108,6 +108,7 @@ const loginUser = async (req, res) => {
               httpOnly: true,
               secure: true,
               sameSite: "None",
+              maxAge: 7 * 24 * 60 * 60 * 1000
             })
             .json(user);
         }

@@ -22,7 +22,7 @@ export function UserContextProvider({ children }) {
         throw new Error('Authorization token is missing.');
       }
 
-      const { data } = await axios.get("/profile",{
+      const { data } = await axios.post("/profile",{
       headers: {
         'Authorization': `Bearer ${token}`
       }
