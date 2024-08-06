@@ -50,6 +50,7 @@ export default function LoginForm() {
           formik.resetForm();
           toast.success("login Successfull!", { theme: "dark" });
           console.log("login Successfull!");
+          localStorage.setItem('Auth_token', data.token);
           fetchProfile();
         }
       } else {

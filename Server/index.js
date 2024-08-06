@@ -8,7 +8,6 @@ const cookieParser = require("cookie-parser");
 const app = express();
 
 // Use CORS middleware
-//,"http://localhost:3000"
 app.use(cors(
     {
         origin: ["https://bladequest.vercel.app","http://localhost:3000"],

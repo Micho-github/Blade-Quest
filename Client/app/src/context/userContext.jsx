@@ -1,6 +1,5 @@
 import React, { createContext, useEffect, useState } from "react";
 import axios from "axios";
-import Cookies from 'js-cookie';
 
 export const UserContext = createContext(undefined);
 
@@ -16,14 +15,20 @@ export function UserContextProvider({ children }) {
   const fetchProfile = async () => {
     try {
       setLoading(true);
-      const token = Cookies.get('token');
-      console.log('Token from cookie:', token);
+      const Auth_token = localStorage.getItem('Auth_token');
 
-      if (!token) {
+      console.log('Token from cookie:', Auth_token);
+
+      if (!Auth_token) {
         throw new Error('Authorization token is missing.');
       }
 
-      const { data } = await axios.get("/profile");
+
+      const { data } = await axios.get("/profile", {
+        headers: {
+          'Authorization': `Bearer ${Auth_token}`
+        }
+    });
       setUser(data);
     } catch (error) {
       console.error('Error fetching profile:', error);
@@ -37,6 +42,7 @@ export function UserContextProvider({ children }) {
   const logout = async () => {
     try {
       await axios.post('/logout');
+      localStorage.removeItem('Auth_token');
       setUser(null);
       window.location.reload();
     } catch (error) {
