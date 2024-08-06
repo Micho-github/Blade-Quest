@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 import { MoonLoader } from "react-spinners";
 import debounce from "lodash.debounce";
 import { UserContext } from "../../context/userContext";
-
+import Cookies from "js-cookie";
 export default function LoginForm() {
   const [showPassword, setShowPassword] = React.useState(false);
   const [SubmitLoading, SetSubmitLoading] = React.useState(false);
@@ -50,7 +50,7 @@ export default function LoginForm() {
           formik.resetForm();
           toast.success("login Successfull!", { theme: "dark" });
           console.log("login Successfull!");
-          localStorage.setItem('Auth_token', data.token);
+          Cookies.set('Auth_token', data.token, { secure: true, sameSite: 'None' });
           fetchProfile();
         }
       } else {

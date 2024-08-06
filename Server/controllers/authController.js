@@ -103,7 +103,14 @@ const loginUser = async (req, res) => {
         { expiresIn: "7d" },
         (err, token) => {
           if (err) throw err;
-          res.json({ token, user });
+          res.cookie('Auth_token', token, {
+            httpOnly: true,
+            secure: true,
+            sameSite: 'None',
+            maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
+            domain: 'bladequest.vercel.app', // Ensure this matches your Vercel subdomain
+            path: '/'
+          }).json(user);
         }
       );
       // return res.json({
