@@ -7,7 +7,7 @@ import { FaCheckCircle } from "react-icons/fa";
 import { MoonLoader } from "react-spinners";
 import { EmailHighlighted } from "../functions/functions";
 
-export default function ResetPasswordForm() {
+export default function ResetPasswordForm({SetRegisterType}) {
   const [SubmitLoading, SetSubmitLoading] = useState(false);
   const [msg, setMsg] = useState("");
   const [error, setError] = useState("");
@@ -140,6 +140,9 @@ export default function ResetPasswordForm() {
             <span>{EmailHighlighted(msg)}</span>
           </div>
         ) : null}
+              <div className="forgot-pwd" style={{marginTop:"20px"}} onClick={()=> SetRegisterType("Login")}>
+        <div className="text" >Remeber your password?</div>
+      </div>
           <button disabled={SubmitLoading || Object.keys(formik.errors).length > 0} type="submit" className="reset-btn">
           <div>
             {SubmitLoading ? (

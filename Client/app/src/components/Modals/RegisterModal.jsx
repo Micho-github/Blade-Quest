@@ -51,7 +51,7 @@ export default function LoginModal({ SetModalIsOpen }) {
             <IoMdClose size={30} />
           </div>
           <LoginForm RegisterType={RegisterType} SetRegisterType={SetRegisterType}/>
-          <ForgotPasswordForm />
+          <ForgotPasswordForm RegisterType={RegisterType} SetRegisterType={SetRegisterType}/>
           <SignUpForm />
         </div>
       </div>
