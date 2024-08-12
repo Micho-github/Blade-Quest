@@ -1,23 +1,19 @@
 import React, { useContext, useEffect } from "react";
-import StartButton from "../Buttons/StartButton";
-import RegisterBtn from "../Buttons/RegisterBtn";
-import { UserContext } from "../../context/userContext";
+import { Route, Routes } from "react-router-dom";
+import MainPage from "../Pages/MainPage";
+import EmailVerify from "../Pages/EmailVerify";
+import PasswordReset from "../Pages/PasswordReset";
+
+
 export default function Main({ Page, IsStarted, SetIsStarted }) {
-  const [UserLoggedIn, SetUserLoggedIn] = React.useState(false);
-  const { user, loading, error } = useContext(UserContext);
 
   return (
     <div className="Main">
-      {Page === "LandingPage" &&
-        (user ? (
-          <>
-            <StartButton IsStarted={IsStarted} SetIsStarted={SetIsStarted} />
-          </>
-        ) : (
-          <>
-            <RegisterBtn />
-          </>
-        ))}
+      <Routes>
+      <Route path="/" element={<MainPage Page={Page} IsStarted={IsStarted} SetIsStarted={SetIsStarted} />} />
+      <Route path="/users/:id/verify/:token" element={<EmailVerify />} />
+			<Route path="/reset-password/:id/:token" element={<PasswordReset />} />
+      </Routes>
     </div>
   );
 }

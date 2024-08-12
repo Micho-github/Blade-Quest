@@ -1,9 +1,9 @@
 import React from "react";
 import "./styles.css";
-export default function TermsAndcond({ formik,SetTermModalIsOpen }) {
+export default function TermsAndcond({ formik,SetTermModalIsOpen,SubmitLoading }) {
   return (
     <>
-      <div className="term-container" onClick={()=>SetTermModalIsOpen(true)}>
+      <div className="term-container" onClick={()=>{if(!SubmitLoading) SetTermModalIsOpen(true)}}>
         <input
           type="checkbox"
           checked={formik.values.terms}

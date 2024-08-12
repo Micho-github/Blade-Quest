@@ -3,9 +3,11 @@ import "./Styles.css";
 import { IoMdClose } from "react-icons/io";
 import LoginForm from "../forms/LoginForm";
 import SignUpForm from "../forms/SignUpForm";
+import ForgotPasswordForm from '../forms/ForgotPasswordForm'
+
 export default function LoginModal({ SetModalIsOpen }) {
   const [RegisterType, SetRegisterType] = React.useState("Login");
-
+  const [IsResetPassword,SetIsResetPassword] = React.useState(false);
   const containerRef = useRef(null);
 
   const scrollToTop = () => {
@@ -38,7 +40,7 @@ export default function LoginModal({ SetModalIsOpen }) {
           </button>
         </div>
         <div
-          className={`wrapper ${RegisterType === "Login" ? "" : "move"} `}
+          className={`wrapper ${RegisterType === "Login" ? "" : RegisterType === "SignUp" ? "move" : RegisterType === "ForgotPassword" ? "forgot": ""} `}
           ref={containerRef}
         >
           <div
@@ -48,7 +50,8 @@ export default function LoginModal({ SetModalIsOpen }) {
           >
             <IoMdClose size={30} />
           </div>
-          <LoginForm />
+          <LoginForm RegisterType={RegisterType} SetRegisterType={SetRegisterType}/>
+          <ForgotPasswordForm />
           <SignUpForm />
         </div>
       </div>

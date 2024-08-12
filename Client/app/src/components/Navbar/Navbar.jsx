@@ -19,7 +19,7 @@ export default function Navbar() {
       
     </div>
     <div>
-    <DropDownMenu Isopen={Isopen} SetIsOpen={SetIsOpen} isClosing={isClosing}/>
+    <DropDownMenu Isopen={Isopen} SetIsOpen={SetIsOpen} isClosing={isClosing} setIsClosing={setIsClosing}/>
     </div>
     </>
   );

@@ -31,7 +31,10 @@ app.use(cookieParser());
 app.use(express.urlencoded({ extended: false }));
 
 // Routes
-app.use("/", require("./routes/authRouters"));
+app.use("/api/V1", require("./routes/authRouters"));
+app.use("/api/V1/users", require("./routes/verifyEmailRouters"));
+app.use("/api/V1/reset-password", require("./routes/resetPasswordRouters"));
+
 
 // listen for requests
 const port = 8000;

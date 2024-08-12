@@ -24,12 +24,15 @@ export function UserContextProvider({ children }) {
       }
 
 
-      const { data } = await axios.get("/profile", {
+      const { data, status  } = await axios.get("/profile", {
         headers: {
           'Authorization': `Bearer ${Auth_token}`
         }
     });
+
+    if (status === 200){
       setUser(data);
+    }
     } catch (error) {
       console.error('Error fetching profile:', error);
       setError('Failed to fetch user profile.');
@@ -41,10 +44,12 @@ export function UserContextProvider({ children }) {
 
   const logout = async () => {
     try {
-      await axios.post('/logout');
+      const {status} = await axios.post('/logout');
+      if (status === 200){
       localStorage.removeItem('Auth_token');
       setUser(null);
       window.location.reload();
+      }
     } catch (error) {
       console.error('Logout failed:', error);
       setError('Failed to log out.');

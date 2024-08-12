@@ -7,17 +7,20 @@ import { toast } from "react-toastify";
 import { MoonLoader } from "react-spinners";
 import debounce from "lodash.debounce";
 import { UserContext } from "../../context/userContext";
-import Cookies from "js-cookie";
-export default function LoginForm() {
+import { FaCheckCircle } from "react-icons/fa";
+import { EmailHighlighted } from "../functions/functions";
+
+export default function LoginForm({ RegisterType, SetRegisterType}) {
   const [showPassword, setShowPassword] = React.useState(false);
   const [SubmitLoading, SetSubmitLoading] = React.useState(false);
   const [SubmitError, SetSubmitError] = React.useState("");
+  const [FormResponse, SetFormResponse] = React.useState("");
   const { fetchProfile } = React.useContext(UserContext);
 
   const handleSubmit = async (values) => {
     SetSubmitLoading(true);
     SetSubmitError("");
-
+    SetFormResponse("");
     const source = axios.CancelToken.source();
     const timeoutId = setTimeout(() => {
       source.cancel("Request timeout, please try again.");
@@ -30,7 +33,7 @@ export default function LoginForm() {
           { action: "login" }
         );
 
-        const { data } = await axios.post(
+        const { data, status } = await axios.post(
           "/login",
           {
             email: values.Email,
@@ -43,15 +46,19 @@ export default function LoginForm() {
         );
         clearTimeout(timeoutId);
 
-        if (data.success === false) {
-          SetSubmitError(data.error);
-          console.log(data.error);
-        } else {
+        if (status === 200 || status === 201) {
           formik.resetForm();
-          toast.success("login Successfull!", { theme: "dark" });
-          console.log("login Successfull!");
-          localStorage.setItem('Auth_token', data.token);
-          fetchProfile();
+          if (data.message) {
+            SetFormResponse(data.message);
+            return SetSubmitLoading(false);
+          } else {
+            toast.success("Login Successful!", { theme: "dark" });
+            console.log("Login Successful!");
+            localStorage.setItem("Auth_token", data.token);
+            fetchProfile();
+          }
+        } else {
+          throw new Error("Unexpected status code received.");
         }
       } else {
         toast.error("Recaptcha not loaded yet, Please check your connection.", {
@@ -59,7 +66,18 @@ export default function LoginForm() {
         });
       }
     } catch (error) {
-      if (axios.isCancel(error)) {
+      clearTimeout(timeoutId);
+      // Check if it's a request error with a specific status
+      if (error.response) {
+        const { status, data } = error.response;
+
+        if (status === 400 || status === 401) {
+          SetSubmitError(data.message);
+        } else {
+          console.error(`Unexpected error: ${status}`, data);
+          toast.error(`Unexpected error: ${status}`, { theme: "dark" });
+        }
+      } else if (axios.isCancel(error)) {
         console.error("Request canceled:", error.message);
         toast.error(error.message, { theme: "dark" });
       } else {
@@ -68,10 +86,11 @@ export default function LoginForm() {
           theme: "dark",
         });
       }
+    } finally {
+      setTimeout(() => {
+        SetSubmitLoading(false);
+      }, 1000);
     }
-    setTimeout(() => {
-      SetSubmitLoading(false);
-    }, 1000);
   };
 
   const debouncedTogglePasswordVisibility = React.useCallback(
@@ -114,6 +133,7 @@ export default function LoginForm() {
           onChange={(e) => HandleEmailChange(e)}
           onBlur={formik.handleBlur}
           value={formik.values.Email}
+          disabled={SubmitLoading}
         />
         <label>Email</label>
         {formik.touched.Email && formik.errors.Email && (
@@ -135,6 +155,7 @@ export default function LoginForm() {
           onChange={(e) => HandlePasswordChange(e)}
           onBlur={formik.handleBlur}
           value={formik.values.Password}
+          disabled={SubmitLoading}
         />
         <div
           role="button"
@@ -148,21 +169,43 @@ export default function LoginForm() {
           <div className="error">{formik.errors.Password}</div>
         )}
         <div className="captcha-text">
-        This site is protected by reCAPTCHA and the Google&nbsp;
-        <a href="https://policies.google.com/privacy">Privacy Policy</a> and&nbsp;
-        <a href="https://policies.google.com/terms" >Terms of Service</a> apply.
+          This site is protected by reCAPTCHA and the Google&nbsp;
+          <a href="https://policies.google.com/privacy">Privacy Policy</a>{" "}
+          and&nbsp;
+          <a href="https://policies.google.com/terms">Terms of Service</a>{" "}
+          apply.
         </div>
+
         {SubmitError ? (
           <div className="error" style={{ paddingTop: "10px" }}>
             {SubmitError}
           </div>
         ) : null}
+
+        {FormResponse ? (
+          <div
+            className="error center-items"
+            style={{
+              color: "#31ff22",
+              marginTop: "10px",
+              fontSize: "15px",
+              width: "95%",
+            }}
+          >
+            <FaCheckCircle
+              size={15}
+              style={{ marginRight: "5px", marginBottom: "-2px" }}
+            />
+            <span>{EmailHighlighted(FormResponse)}</span>
+          </div>
+        ) : null}
       </div>
-      <div className="forgot-pwd">
+      <div className="forgot-pwd" onClick={()=> SetRegisterType("ForgotPassword")}>
         <div className="text">Forgot your Password?</div>
       </div>
+
       <div className="submit">
-        <button disabled={SubmitLoading} type="submit" className="login-btn">
+        <button disabled={SubmitLoading || Object.keys(formik.errors).length > 0} type="submit" className="login-btn">
           <div>
             {SubmitLoading ? (
               <>

@@ -8,14 +8,25 @@ import { IoSettingsSharp } from "react-icons/io5";
 import SettingsModal from "../Modals/SettingsModal";
 import { UserContext } from "../../context/userContext";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
-export default function DropDownMenu({ Isopen, SetIsOpen, isClosing }) {
+export default function DropDownMenu({ Isopen, SetIsOpen, isClosing,setIsClosing }) {
   const [ModalIsOpen, SetModalIsOpen] = React.useState(false);
   const { user, logout, loading, error } = useContext(UserContext);
 
+  const handleClick = () => {
+    if(Isopen){
+    setIsClosing(true);
+    setTimeout(() => {
+      setIsClosing(false);
+      SetIsOpen(false);
+    }, 500);
+  }
+  }
+
   if (Isopen || isClosing) {
     const menuItems = [
-      { Title: "App", Icon: <MdNotStarted /> },
+      { Title: "App", Icon: <MdNotStarted />, link:"/" },
       { Title: "News", Icon: <IoNewspaperOutline /> },
       { Title: "About", Icon: <FaQuestionCircle /> },
       { Title: "Team", Icon: <RiTeamFill /> },
@@ -27,10 +38,12 @@ export default function DropDownMenu({ Isopen, SetIsOpen, isClosing }) {
           <ul>
             {menuItems.map((item, index) => (
               <li key={index}>
+                <Link to={item.link} style={{all:"unset"}} onClick={handleClick}>
                 <button style={{ "--delay": `${1 + index * 0.3}s` }}>
                   {item.Title}
                   <div>{item.Icon}</div>
                 </button>
+                </Link>
               </li>
             ))}
             <li>

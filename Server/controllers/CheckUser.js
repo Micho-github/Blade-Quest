@@ -1,25 +1,36 @@
 const User = require("../Models/user");
-//Check Username Endpoint
+
+// Check Username Endpoint
 const CheckUser = async (req, res) => {
-    try {
-      const { username } = req.body;
-      // check if user exists
-      const user = await User.findOne({ username: username.toLowerCase() });
-      if (user) {
-        return res.json({
-          success: false,
-          error: "Username already taken",
-        });
-      }
-      return res.json({
-        success: true,
-        message: "Username Available",
+  try {
+    const { username } = req.body;
+
+    // Check if username is provided
+    if (!username) {
+      return res.status(400).json({
+        message: "Username is required",
       });
-    } catch (error) {
-      console.log(error);
     }
-  };
-  
-  module.exports = {
-    CheckUser
-  };
+
+    // Check if user exists
+    const user = await User.findOne({ username: username.toLowerCase() });
+    if (user) {
+      return res.status(409).json({
+        message: "Username already taken",
+      });
+    }
+
+    return res.status(200).json({
+      message: "Username Available",
+    });
+  } catch (error) {
+    console.error("Error checking username:", error);
+    return res.status(500).json({
+      message: "An error occurred while checking the username.",
+    });
+  }
+};
+
+module.exports = {
+  CheckUser
+};

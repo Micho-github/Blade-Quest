@@ -13,7 +13,7 @@
   justify-content: center;
 }
 .box-container {
-  position:absolute;
+  position: absolute;
   width: 90%;
   max-width: 500px;
   height: 50%;
@@ -40,7 +40,7 @@
   background: rgba(255, 255, 255, 0.662);
 }
 .term-modal-container {
-  position:absolute;
+  position: absolute;
   width: 90%;
   max-width: 500px;
   height: 70%;
@@ -52,7 +52,7 @@
   background: #000;
 }
 
-.term-header{
+.term-header {
   padding: 1.5rem;
 }
 .term-body {
@@ -66,33 +66,33 @@
   overflow-x: hidden;
   scroll-behavior: smooth;
 }
-.term-body div{
-font-weight: 900;
-margin-bottom: 0.5rem;
-margin-top: 0.5rem;
-font-size: larger;
+.term-body div {
+  font-weight: 900;
+  margin-bottom: 0.5rem;
+  margin-top: 0.5rem;
+  font-size: larger;
 }
-.term-footer{
+.term-footer {
   padding: 1rem;
 }
-.term-footer h1 span{
+.term-footer h1 span {
   color: #007bff;
 }
-.term-footer div{
+.term-footer div {
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   justify-items: center;
 }
-.term-footer div button{
+.term-footer div button {
   width: 100%;
 }
-.term-footer div button.accept{
+.term-footer div button.accept {
   background: #007bff;
   color: #ffffff;
 }
-.term-footer div button.decline{
+.term-footer div button.decline {
   background: #cdcdcd;
   color: #ffffff;
 }
@@ -161,7 +161,16 @@ font-size: larger;
   background: #28a745;
   color: #fff;
 }
-.veen button.login-btn div {
+
+.veen button.reset-btn {
+  margin-top: 20px;
+  border-color: #0481ff;
+  background: #0481ff;
+  color: #fff;
+}
+
+.veen button.login-btn div,
+.veen button.signup-btn div,.veen button.reset-btn div {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -171,6 +180,7 @@ font-size: larger;
 .veen button.dark:hover {
   background: #218838;
 }
+
 .veen .move button.signup-btn {
   border-color: #007bff;
   background: #007bff;
@@ -206,6 +216,7 @@ font-size: larger;
   transition: all 0.5s;
   height: 100%;
 }
+
 .veen .wrapper.move {
   overflow-y: scroll;
   scroll-behavior: smooth;
@@ -234,6 +245,17 @@ font-size: larger;
   transform: translateX(-100%);
   visibility: hidden;
 }
+
+.veen .wrapper #forgot-pwd,
+.veen .wrapper.forgot #login {
+  display: none;
+}
+
+.veen .wrapper.forgot #forgot-pwd
+ {
+  display: block;
+}
+
 .veen .wrapper > form > div {
   position: relative;
   margin-bottom: 15px;
@@ -306,10 +328,10 @@ input[type="password"]::-ms-clear {
   position: relative;
   text-align: left;
   width: 100%;
-  margin-left: 3%;
+  margin-left: 2%;
   color: #ff5722;
 }
-.veen .wrapper .usernamecheck .available,
+.veen .wrapper .usernamecheck.available,
 .taken {
   position: relative;
   width: 100%;
@@ -320,6 +342,30 @@ input[type="password"]::-ms-clear {
   justify-content: flex-start;
   justify-items: center;
   gap: 4px;
+}
+
+.center-items {
+  align-items: center;
+  justify-items: center;
+  justify-content: center;
+  width: 90%;
+}
+
+.center-loader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  width: 100%;
+  height: 100%;
+}
+.username-response-loader {
+  display: flex;
+  align-items: start;
+  justify-content: start;
+  align-content: start;
+  margin-top: 10px;
+  margin-left: 2%;
 }
 
 .taken {
@@ -335,13 +381,13 @@ input[type="password"]::-ms-clear {
 .forgot-pwd {
   margin-right: 5px;
   display: flex;
-  align-items: end;
-  justify-content: end;
+  align-items: center;
+  justify-content: center;
 }
 .forgot-pwd .text {
-  color: #4caf50;
+  color: #28d451;
+  font-weight: 700;
   font-size: medium;
-  text-decoration: underline;
   cursor: pointer;
 }
 @media (max-width: 700px) {
