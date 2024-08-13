@@ -170,7 +170,8 @@
 }
 
 .veen button.login-btn div,
-.veen button.signup-btn div,.veen button.reset-btn div {
+.veen button.signup-btn div,
+.veen button.reset-btn div {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -218,11 +219,11 @@
 }
 
 .veen .wrapper.move {
-  overflow-y: scroll;
+  overflow-y: auto;
   scroll-behavior: smooth;
 }
 .veen .wrapper.move > form {
-  height: 200px;
+  height: 170px;
 }
 .veen .wrapper > form:focus {
   outline: none;
@@ -251,8 +252,7 @@
   display: none;
 }
 
-.veen .wrapper.forgot #forgot-pwd
- {
+.veen .wrapper.forgot #forgot-pwd {
   display: block;
 }
 

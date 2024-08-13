@@ -1,25 +1,43 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect } from "react";
 
 const MusicPlayer = () => {
   const audioRef = useRef(null);
 
   useEffect(() => {
-    const handleUserClick = () => {
-      const audio = audioRef.current;
-      audio.play().catch(error => {
-        console.error('Playback error:', error);
-      });
+    const audio = audioRef.current;
 
-      document.removeEventListener('click', handleUserClick);
+    const playAudio = () => {
+      audio.play().catch((error) => {
+        console.error("Playback error:", error);
+      });
     };
 
-    document.addEventListener('click', handleUserClick);
+    playAudio();
+
+    const handleUserClick = () => {
+      playAudio();
+      document.removeEventListener("click", handleUserClick);
+    };
+
+    document.addEventListener("click", handleUserClick);
+
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === "hidden") {
+        audio.pause();
+      } else {
+        playAudio();
+      }
+    };
+
+    document.addEventListener("visibilitychange", handleVisibilityChange);
 
     return () => {
-      document.removeEventListener('click', handleUserClick);
+      document.removeEventListener("click", handleUserClick);
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
     };
   }, []);
-   useEffect(() => {
+
+  useEffect(() => {
     const audio = audioRef.current;
     if (audio) {
       audio.volume = 0.4;
@@ -27,10 +45,12 @@ const MusicPlayer = () => {
   }, [audioRef.current]);
 
   return (
-    <audio ref={audioRef} src="/assets/music/background-music-landing-page.mp3" loop />
+    <audio
+      ref={audioRef}
+      src="/assets/music/background-music-landing-page.mp3"
+      loop
+    />
   );
 };
 
 export default MusicPlayer;
-
-///public/assets/music/background-music-landing-page.mp3

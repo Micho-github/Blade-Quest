@@ -10,7 +10,8 @@ import { UserContextProvider } from "./context/userContext";
 import LoadingSpinner from "./components/Pages/LoadingPage";
 import axios from "axios";
 import { BrowserRouter, Route, Routes, useParams } from "react-router-dom";
-import { LoadingProvider, LoadingContext} from "./context/LoadingContext";
+import { LoadingProvider, LoadingContext } from "./context/LoadingContext";
+import PageNotFound from "./components/Pages/PageNotFound";
 // axios.defaults.baseURL = "http://localhost:8000/api/V1";
 axios.defaults.baseURL = "https://bladequest-api.vercel.app/api/V1";
 axios.defaults.withCredentials = true;
@@ -35,7 +36,6 @@ function App() {
     setIsLoading(true);
     checkGrecaptchaLoaded();
   }, [setIsLoading]);
-
 
   return (
     <div className="app">
@@ -76,15 +76,10 @@ function App() {
                 </>
               }
             />
-            {/* Add other routes here if needed */}
           </Routes>
           <Header />
           <ToastContainer />
-          <Main
-            Page={Page}
-            IsStarted={IsStarted}
-            SetIsStarted={SetIsStarted}
-          />
+          <Main Page={Page} IsStarted={IsStarted} SetIsStarted={SetIsStarted} />
           <Footer />
         </>
       )}

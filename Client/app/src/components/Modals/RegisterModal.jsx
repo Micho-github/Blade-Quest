@@ -19,7 +19,7 @@ export default function LoginModal({ SetModalIsOpen }) {
     <div className="modal-window">
       <div className="veen">
         <div className="login-btn splits">
-          <p>Already an user?</p>
+          <p>Already a user?</p>
           <button
             className={`${RegisterType === "Login" ? "active" : ""}`}
             onClick={() => {
