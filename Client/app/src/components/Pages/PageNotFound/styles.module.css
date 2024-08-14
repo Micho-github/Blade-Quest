@@ -1,19 +1,18 @@
-.container {
+.outer_container {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  margin: auto;
+}
+.container {
+  margin: 15px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
   background-color: #e3e3e3;
-  height: max-content;
-  width: max-content;
-  padding: 20px;
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
+  padding: 33px;
 }
 
 .flex_center {
@@ -22,15 +21,15 @@
 }
 
 .h1 {
-  font-size: 2rem;
+  font-size: 1.75rem;
   color: #333;
-  margin-left: 7px;
+  margin-left: 5px;
 }
 
 .p {
   font-size: 1.1rem;
   color: #555;
-  margin-top: 33px;
+  margin-top: 27px;
 }
 
 .green_btn {

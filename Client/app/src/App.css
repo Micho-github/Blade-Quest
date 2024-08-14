@@ -5,19 +5,21 @@
   overflow: hidden;
 }
 
-.grecaptcha-badge { visibility: hidden; }
+.grecaptcha-badge {
+  visibility: hidden;
+}
 
-.captcha-text{
+.captcha-text {
   color: rgb(213, 213, 213);
   text-align: start;
   font-size: 15px;
   margin-top: 10px;
   margin-left: 2%;
 }
-.captcha-text a{
-color: rgb(45, 108, 217);
-font-weight: 700;
-text-decoration:none;
+.captcha-text a {
+  color: rgb(45, 108, 217);
+  font-weight: 700;
+  text-decoration: none;
 }
 .background-video {
   background: center no-repeat;
@@ -74,7 +76,7 @@ text-decoration:none;
   justify-content: center;
   width: 100%;
 }
-.game-logo{
+.game-logo {
   margin-left: 20px;
 }
 .DropDownMenu {
@@ -84,8 +86,8 @@ text-decoration:none;
   height: 100vh;
   left: 0;
   top: 10vh;
-  color: white;
-  background: #2a2929;
+  color: rgb(228, 228, 228);
+  background: rgba(0, 0, 0, 0.75);
   animation: animate 1s forwards;
   font-size: 2rem;
 }

@@ -49,7 +49,7 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
   background-color: #ffffff;
   color: white;
-  background: #000;
+  background: rgb(44, 44, 44);
 }
 
 .term-header {
@@ -58,12 +58,11 @@
 .term-body {
   position: relative;
   height: calc(100% - 12rem);
-  background: white;
-  color: black;
+  background: rgb(44, 44, 44);
+  color: rgb(219, 219, 219);
   text-align: start;
   padding: 1rem;
-  overflow-y: scroll;
-  overflow-x: hidden;
+  overflow: auto;
   scroll-behavior: smooth;
 }
 .term-body div {
@@ -135,6 +134,7 @@
   font-size: 1.2rem;
   display: table;
   position: relative;
+  border-radius: 33px;
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.14), 0 4px 8px rgba(0, 0, 0, 0.28);
 }
 .veen > div {
@@ -142,7 +142,7 @@
   vertical-align: middle;
   text-align: center;
   color: #000000;
-  border-radius: 5px;
+  border-radius: 15px;
 }
 .veen button {
   background: transparent;
@@ -223,7 +223,7 @@
   scroll-behavior: smooth;
 }
 .veen .wrapper.move > form {
-  height: 170px;
+  height: 200px;
 }
 .veen .wrapper > form:focus {
   outline: none;
@@ -233,12 +233,10 @@
   visibility: visible;
 }
 .veen .wrapper #register {
-  padding-bottom: 10%;
   transform: translateY(-100%) translateX(100%);
   visibility: hidden;
 }
 .veen .wrapper.move #register {
-  margin-top: 10%;
   transform: translateY(-100%) translateX(0%);
   visibility: visible;
 }

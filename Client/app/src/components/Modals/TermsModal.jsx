@@ -2,20 +2,19 @@ import React from "react";
 import "./Styles.css";
 import { IoMdClose } from "react-icons/io";
 
-export default function TermsModal({ formik,SetTermModalIsOpen }) {
+export default function TermsModal({ formik, SetTermModalIsOpen }) {
   const [ScrolledToBottom, SetScrolledToBottom] = React.useState(false);
-  
-  const handleAgreement = ()=>{
+
+  const handleAgreement = () => {
     formik.setFieldValue("terms", true);
     SetTermModalIsOpen(false);
-  }
-  
-  const handleDecline = ()=>{
+  };
+
+  const handleDecline = () => {
     formik.setFieldValue("terms", false);
     SetTermModalIsOpen(false);
-  }
-  
-  
+  };
+
   const containerRef = React.useRef(null);
   const handleScroll = () => {
     const container = containerRef.current;
@@ -143,8 +142,20 @@ export default function TermsModal({ formik,SetTermModalIsOpen }) {
             notice.
           </h1>
           <div>
-            <button disabled={!ScrolledToBottom} className="accept" onClick={handleAgreement}>Accept</button>
-            <button disabled={!ScrolledToBottom} className="decline" onClick={handleDecline}>Decline</button>
+            <button
+              disabled={!ScrolledToBottom}
+              className="accept"
+              onClick={handleAgreement}
+            >
+              Accept
+            </button>
+            <button
+              disabled={!ScrolledToBottom}
+              className="decline"
+              onClick={handleDecline}
+            >
+              Decline
+            </button>
           </div>
         </div>
       </div>
