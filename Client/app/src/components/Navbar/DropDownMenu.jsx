@@ -60,7 +60,7 @@ export default function DropDownMenu({
             <li>
               <button
                 onClick={() => SetModalIsOpen(true)}
-                style={{ "--delay": `${1 + 5 * 0.3}s` }}
+                style={{ "--delay": `${1 + 6 * 0.3}s` }}
               >
                 Settings
                 <div>
@@ -72,7 +72,7 @@ export default function DropDownMenu({
               <li>
                 <button
                   onClick={logout}
-                  style={{ "--delay": `${1 + 6 * 0.3}s`, color: "#ff5722" }}
+                  style={{ "--delay": `${1 + 7 * 0.3}s`, color: "#ff5722" }}
                 >
                   Logout
                   <div>
