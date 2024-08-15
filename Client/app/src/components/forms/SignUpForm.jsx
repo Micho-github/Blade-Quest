@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import debounce, { EmailHighlighted } from "../functions/functions";
+import { EmailHighlighted } from "../functions/functions";
 import { useFormik } from "formik";
 import SignupSchema from "../Schemas/SignupSchema";
 import axios from "axios";
@@ -10,6 +10,7 @@ import PasswordStrengthMeter from "../PasswordStrengthChecker/StrengthMeter";
 import TermsAndcond from "../Buttons/TermsAndcond";
 import TermsModal from "../Modals/TermsModal";
 import { ClipLoader, MoonLoader } from "react-spinners";
+import debounce from "lodash.debounce";
 export default function SignUpForm() {
   const [showPassword, SetShowPassword] = React.useState(false);
   const [SubmitLoading, SetSubmitLoading] = React.useState(false);

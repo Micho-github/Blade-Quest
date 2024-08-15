@@ -17,8 +17,7 @@ export default function Navbar() {
         />
         <img
           alt="logo"
-          src={require("../../Assets/images/Blade-Quest-logo-black.png")}
-          width={250}
+          src={require("../../Assets/images/logo-no-background.png")}
           className="game-logo"
         />
       </div>
@@ -33,3 +32,4 @@ export default function Navbar() {
     </>
   );
 }
+
