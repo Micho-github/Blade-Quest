@@ -1,0 +1,6 @@
+frameY  --- animation:
+9           1st frame: idle-left
+11          1st frame: idle-right
+47          attack-left
+49          attack-right
+21          frames 1->4: crouch

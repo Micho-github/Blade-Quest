@@ -1,4 +1,4 @@
-const emailContent = (url) =>`
+const emailContent = (url) => `
 <div
 style="
 font-family: Arial, sans-serif;
@@ -16,13 +16,21 @@ box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 "
 >
 <div style="display: flex; justify-content: center; align-items: center; gap: 20px;">
-  
+
 <h1 style="color: rgb(0, 0, 0); text-align: center; font-size: 32px">
-Welcome to Blade Quest!
+Welcome to
 </h1>
 
+<div style="text-align: center; margin-top: 30px">
+<img
+  src="https://bladequest.vercel.app/static/media/Blade-Quest-logo-black.e9fc2fdd901919714c18.png"
+  alt="Blade Quest Logo"
+  style="width: 300px; height: auto"
+/>
 </div>
-<p style="font-size: 18px; text-align: center">
+
+</div>
+<p style="font-size: 18px; text-align: center; margin-top: 30px">
 Thank you for signing up. Please click the button below to verify your
 email address:
 </p>
@@ -53,14 +61,6 @@ This link will expire in 2 hours.
 If you did not create an account, please ignore this email.
 </p>
 
-<div style="text-align: center; margin-top: 30px">
-<img
-  src="https://bladequest.vercel.app/static/media/Blade-Quest-logo-black.e9fc2fdd901919714c18.png"
-  alt="Blade Quest Logo"
-  style="width: 300px; height: auto"
-/>
-</div>
-
 <p
 style="
   text-align: center;
@@ -77,5 +77,5 @@ responses are not monitored.
 `;
 
 module.exports = {
-    emailContent,
-}
+  emailContent,
+};

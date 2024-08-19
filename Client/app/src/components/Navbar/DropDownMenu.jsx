@@ -32,7 +32,7 @@ export default function DropDownMenu({
 
   if (Isopen || isClosing) {
     const menuItems = [
-      { Title: "App", Icon: <MdNotStarted />, link: "/" },
+      { Title: "Main Menu", Icon: <MdNotStarted />, link: "/" },
       { Title: "News", Icon: <IoNewspaperOutline />, link: "" },
       { Title: "About", Icon: <FaQuestionCircle />, link: "" },
       { Title: "Team", Icon: <RiTeamFill />, link: "" },

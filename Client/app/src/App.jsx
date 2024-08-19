@@ -9,10 +9,9 @@ import "react-toastify/dist/ReactToastify.css";
 import { UserContextProvider } from "./context/userContext";
 import LoadingSpinner from "./components/Pages/LoadingPage";
 import axios from "axios";
-import { BrowserRouter, Route, Routes, useParams } from "react-router-dom";
+import { BrowserRouter, Route, Routes, useNavigate } from "react-router-dom";
 import { LoadingProvider, LoadingContext } from "./context/LoadingContext";
-import PageNotFound from "./components/Pages/PageNotFound";
-import DisableRightClick from './components/functions/DisableRightClick'
+import DisableRightClick from "./components/functions/DisableRightClick";
 import { SlSizeFullscreen } from "react-icons/sl";
 
 // axios.defaults.baseURL = "http://localhost:8000/api/V1";
@@ -24,7 +23,7 @@ function App() {
   const [IsStarted, SetIsStarted] = useState(false);
   const { isLoading, setIsLoading } = useContext(LoadingContext);
   const [isPageReady, setIsPageReady] = useState(false);
-  const param = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const checkGrecaptchaLoaded = () => {
@@ -40,9 +39,20 @@ function App() {
     checkGrecaptchaLoaded();
   }, [setIsLoading]);
 
+  useEffect(() => {
+    if (IsStarted) {
+      const timer = setTimeout(() => {
+        SetIsStarted(false);
+        navigate("/MainGamePage");
+      }, 13000);
+
+      return () => clearTimeout(timer); // Cleanup timeout on component unmount
+    }
+  }, [IsStarted, navigate]);
+
   return (
     <div className="app">
-      <DisableRightClick/>
+      <DisableRightClick />
       {!isPageReady && <LoadingSpinner />}
       {isPageReady && (
         <>
@@ -96,4 +106,5 @@ function App() {
     </div>
   );
 }
+
 export default App;

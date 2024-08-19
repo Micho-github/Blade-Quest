@@ -8,14 +8,14 @@ const cookieParser = require("cookie-parser");
 const app = express();
 
 // Use CORS middleware
-app.use(cors(
-    {
-        origin: ["https://bladequest.vercel.app","http://localhost:3000"],
-        methods: ["POST", "GET"],
-        credentials: true,
-        allowedHeaders: ['Content-Type', 'Authorization'],
-    }
-));
+app.use(
+  cors({
+    origin: ["https://bladequest.vercel.app", "http://localhost:3000"],
+    methods: ["POST", "GET"],
+    credentials: true,
+    allowedHeaders: ["Content-Type", "Authorization"],
+  })
+);
 
 mongoose
   .connect(process.env.MONGO_URL, {})
@@ -35,7 +35,6 @@ app.use("/api/V1", require("./routes/authRouters"));
 app.use("/api/V1/users", require("./routes/verifyEmailRouters"));
 app.use("/api/V1/reset-password", require("./routes/resetPasswordRouters"));
 
-
 // listen for requests
 const port = 8000;
 app.listen(port, () => {
@@ -44,5 +43,5 @@ app.listen(port, () => {
 
 app.use((err, req, res, next) => {
   console.error(err.stack);
-  res.status(500).send('Something broke!');
+  res.status(500).send("Something broke!");
 });
