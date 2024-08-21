@@ -121,7 +121,7 @@
   margin-left: -15px;
 }
 
-@media screen and (max-height: 659px), screen and (max-width: 721px) {
+@media screen and (max-height: 659px), screen and (max-width: 719px) {
   .settingsModal h1,
   .resourcesModal h1,
   .newsModal h1,
@@ -131,7 +131,6 @@
 
   .howToPlayModal h2 {
     font-size: 1.25rem;
-    margin-top: 10px;
   }
 
   .howToPlayModal ul {
@@ -149,7 +148,6 @@
 
   .howToPlayModal h2 {
     font-size: 0.9rem;
-    margin-top: 12px;
   }
 
   .howToPlayModal ul {
