@@ -1,0 +1,158 @@
+.container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  background-color: rgb(30, 14, 0);
+}
+
+.newsModal {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  margin-top: 30px;
+}
+
+.resourcesModal {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  margin-top: 30px;
+}
+
+.settingsModal {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  margin-top: 30px;
+}
+
+.settings {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  margin-top: -30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.volumeControl {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.volumeControl label {
+  margin-right: 10px;
+  font-size: 1.2rem;
+}
+
+.volumeControl input[type="range"] {
+  width: 200px;
+  margin-right: 10px;
+}
+
+.muteButton {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #333;
+}
+
+.muteButton:hover {
+  color: #000;
+}
+
+.backIcon {
+  position: absolute;
+  left: 12px;
+  cursor: pointer;
+  font-size: 24px;
+  color: rgb(195, 195, 195);
+  transition: transform 0.2s ease;
+}
+
+.backIcon:hover {
+  transform: scale(1.5);
+}
+
+.howToPlayModal {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  text-align: justify;
+  padding: 33px;
+  margin-top: 30px;
+}
+
+.howToPlayModal hr {
+  margin-top: 25px;
+}
+
+.howToPlayModal ul {
+  list-style: disc;
+  font-size: 18px;
+}
+
+.howToPlayModal li {
+  margin-top: 15px;
+}
+
+.settingsModal h1,
+.resourcesModal h1,
+.newsModal h1,
+.howToPlayModal h1 {
+  font-size: 2.5rem;
+  text-align: center;
+}
+
+.howToPlayModal h2 {
+  font-size: 1.5rem;
+  margin-top: 20px;
+  margin-left: -15px;
+}
+
+@media screen and (max-height: 659px), screen and (max-width: 721px) {
+  .settingsModal h1,
+  .resourcesModal h1,
+  .newsModal h1,
+  .howToPlayModal h1 {
+    font-size: 2rem;
+  }
+
+  .howToPlayModal h2 {
+    font-size: 1.25rem;
+    margin-top: 10px;
+  }
+
+  .howToPlayModal ul {
+    font-size: 16px;
+  }
+}
+
+@media screen and (max-height: 580px), screen and (max-width: 479px) {
+  .settingsModal h1,
+  .resourcesModal h1,
+  .newsModal h1,
+  .howToPlayModal h1 {
+    font-size: 1.5rem;
+  }
+
+  .howToPlayModal h2 {
+    font-size: 0.9rem;
+    margin-top: 12px;
+  }
+
+  .howToPlayModal ul {
+    font-size: 12px;
+  }
+
+  .howToPlayModal li {
+    margin-top: 10px;
+  }
+}

@@ -1,12 +1,12 @@
 import React from "react";
-import styles from "./GamePageModals.module.css";
-import { FaTimes } from "react-icons/fa";
+import styles from "./OptionsModals.module.css";
+import { FaChevronLeft } from "react-icons/fa";
 
 export default function HowToPlayModal({ onClose }) {
   return (
-    <div className={styles.modal}>
+    <div className={styles.container}>
       <div className={styles.howToPlayModal}>
-        <FaTimes className={styles.closeIcon} onClick={onClose} />
+        <FaChevronLeft className={styles.backIcon} onClick={onClose} />
         <h1>How To Play?</h1>
         <h2>~ Using a Touch Screen:</h2>
         <ul>

@@ -11,11 +11,11 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <LoadingProvider>
-    <UserContextProvider>
-    <BrowserRouter>
-    <App />
-    </BrowserRouter>
-    </UserContextProvider>
+      <UserContextProvider>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </UserContextProvider>
     </LoadingProvider>
   </React.StrictMode>
 );

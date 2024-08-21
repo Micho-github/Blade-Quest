@@ -1,57 +1,10 @@
-.containor {
-  display: flex;
-  position: relative;
-}
-.modal {
-  position: fixed;
-  top: 54%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 80vw;
-  height: 60vh;
-  background-color: #000;
-  border: 7px solid rgb(73, 40, 2);
-  color: rgb(195, 195, 195);
-}
-
-.howToPlayModal {
-  text-align: justify;
-  padding: 33px;
-}
-
-.modal ul {
-  list-style: disc;
-  font-size: 18px;
-}
-
-.modal li {
-  margin-top: 15px;
-}
-
-.modal h1 {
-  font-size: 2.5rem;
-  text-align: center;
-}
-
-.modal h2 {
-  font-size: 1.5rem;
-  margin-top: 20px;
-  margin-left: -15px;
-}
-
-.iframe {
+.container {
   width: 100%;
   height: 100%;
-  border: none;
-}
-
-.howToPlay_img {
-  position: fixed;
-  top: 5px;
-  right: 5px;
-  width: 22.5px;
-  float: right;
-  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
 }
 
 .closeIcon {
@@ -61,43 +14,268 @@
   cursor: pointer;
   font-size: 24px;
   color: rgb(195, 195, 195);
+  transition: transform 0.2s ease;
 }
 
-.modal hr {
-  margin-top: 25px;
+.closeIcon:hover {
+  transform: scale(1.5);
 }
 
-@media screen and (max-height: 659px), screen and (max-width: 721px) {
-  .modal h1 {
-    font-size: 2rem;
+.shopModal {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.leaderboardModal {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.optionsModal {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.leaderboardModal h1,
+.shopModal h1,
+.optionsModal h1 {
+  font-size: 50px;
+  position: absolute;
+  top: 10px;
+}
+
+.optionsIcons {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 20px;
+  justify-items: center;
+  align-items: center;
+  width: 100%;
+  max-width: 400px;
+  margin-top: 60px;
+}
+
+.optionsIcon {
+  width: 175px;
+  height: 175px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.optionsIcon:hover {
+  transform: scale(1.1);
+}
+
+.gameContainer {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.gameModal {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 8px;
+}
+
+.exitGame {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: red;
+  color: rgb(195, 195, 195);
+  font-size: 25px;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  transition: transform 0.2s ease;
+}
+
+.exitGame:hover {
+  transform: scale(1.5);
+}
+
+.confirmationPopup {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.9);
+  color: rgb(218, 218, 218);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+}
+
+.popupContent {
+  text-align: center;
+}
+
+.popupContent h1 {
+  margin-bottom: 20px;
+  font-size: 25px;
+}
+
+.popupContent p {
+  margin-bottom: 20px;
+  font-size: 17px;
+}
+
+.popupContent button {
+  background-color: #cc7a00;
+  border: none;
+  color: #fff;
+  padding: 10px 20px;
+  width: 130px;
+  font-size: 16px;
+  border-radius: 10px;
+  cursor: pointer;
+  margin: 0 10px;
+  transition: transform 0.2s ease;
+}
+
+.popupContent button:hover {
+  background-color: #e48900;
+  transform: scale(1.1);
+}
+
+.popupContent button:nth-of-type(2) {
+  background-color: red;
+
+  transition: transform 0.2s ease;
+}
+
+.popupContent button:nth-of-type(2):hover {
+  background-color: darkred;
+  transform: scale(1.1);
+}
+
+.playModal {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  background-image: url("../../../Assets/images/background.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.playImages {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.logo_img {
+  width: 500px;
+  position: absolute;
+  top: 30px;
+}
+.play_img {
+  width: 250px;
+  position: relative;
+  margin: auto;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+.play_img:hover {
+  transform: scale(1.1);
+}
+
+@media screen and (max-height: 580px), screen and (max-width: 300px) {
+  .gameContainer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.75);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
   }
 
-  .modal h2 {
-    font-size: 1.25rem;
-    margin-top: 10px;
+  .gameModal {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
   }
 
-  .modal ul {
-    font-size: 16px;
+  .confirmationPopup {
+    z-index: 10000;
   }
 }
 
-@media screen and (max-height: 580px), screen and (max-width: 479px) {
-  .modal h1 {
-    font-size: 1.5rem;
-    margin-top: -25px;
+@media screen and (max-height: 650px), screen and (max-width: 595px) {
+  .logo_img {
+    width: 330px;
+    top: 15px;
   }
 
-  .modal h2 {
-    font-size: 0.9rem;
-    margin-top: 12px;
+  .play_img {
+    width: 150px;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .logo_img {
+    width: 250px;
+    top: 15px;
+  }
+}
+
+@media screen and (max-height: 880px), screen and (max-width: 470px) {
+  .optionsIcon {
+    height: 125px;
+    width: 125px;
+  }
+}
+
+@media screen and (max-height: 740px), screen and (max-width: 340px) {
+  .optionsIcon {
+    height: 100px;
+    width: 100px;
   }
 
-  .modal ul {
-    font-size: 12px;
+  .leaderboardModal h1,
+  .shopModal h1,
+  .optionsModal h1 {
+    font-size: 33px;
   }
+}
 
-  .modal li {
-    margin-top: 10px;
+@media screen and (max-height: 660px) {
+  .optionsIcon {
+    height: 75px;
+    width: 75px;
   }
 }

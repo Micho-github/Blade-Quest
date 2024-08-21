@@ -1,39 +1,38 @@
 import React, { useState } from "react";
 import styles from "./GamePageModals.module.css";
-import HowToPlayModal from "./HowToPlayModal";
+import { FaTimes } from "react-icons/fa";
 
-export default function GameModal() {
-  const [isHowToPlayOpen, setHowToPlayOpen] = useState(false);
-  const [isGameModalOpen, setGameModalOpen] = useState(true);
+export default function GameModal({ onExit }) {
+  const [showConfirmation, setShowConfirmation] = useState(false);
 
-  const openHowToPlay = () => {
-    setGameModalOpen(false); // Close the game modal
-    setHowToPlayOpen(true); // Open the HowToPlay modal
+  const handleExitClick = () => {
+    setShowConfirmation(true);
   };
 
-  const closeHowToPlay = () => {
-    setHowToPlayOpen(false); // Close the HowToPlay modal
-    setGameModalOpen(true); // Reopen the game modal
+  const handleReturnToGame = () => {
+    setShowConfirmation(false);
   };
 
   return (
-    <div className={styles.container}>
-      {isGameModalOpen && (
-        <div className={styles.modal}>
-          <iframe
-            src="/BladeQuestGame/index.html"
-            title="Blade Quest"
-            className={styles.iframe}
-          />
-          <img
-            src={require("../../../Assets/images/pixel_help.png")}
-            alt="Help"
-            className={styles.howToPlay_img}
-            onClick={openHowToPlay} // Open HowToPlay modal on click
-          />
+    <div className={styles.gameContainer}>
+      <div className={styles.gameModal}>
+        <iframe
+          src="/BladeQuestGame/index.html"
+          title="Blade Quest"
+          className={styles.iframe}
+        />
+        <FaTimes className={styles.exitGame} onClick={handleExitClick} />
+      </div>
+      {showConfirmation && (
+        <div className={styles.confirmationPopup}>
+          <div className={styles.popupContent}>
+            <h1>Are you sure you want to exit the game?</h1>
+            <p>You will lose all unclaimed progress</p>
+            <button onClick={handleReturnToGame}>Return to Game</button>
+            <button onClick={onExit}>Exit to Game Menu</button>
+          </div>
         </div>
       )}
-      {isHowToPlayOpen && <HowToPlayModal onClose={closeHowToPlay} />}
     </div>
   );
 }

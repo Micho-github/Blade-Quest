@@ -12,7 +12,6 @@ import axios from "axios";
 import { BrowserRouter, Route, Routes, useNavigate } from "react-router-dom";
 import { LoadingProvider, LoadingContext } from "./context/LoadingContext";
 import DisableRightClick from "./components/functions/DisableRightClick";
-import { SlSizeFullscreen } from "react-icons/sl";
 
 // axios.defaults.baseURL = "http://localhost:8000/api/V1";
 axios.defaults.baseURL = "https://bladequest-api.vercel.app/api/V1";
@@ -91,16 +90,9 @@ function App() {
               }
             />
           </Routes>
-          <Header />
           <ToastContainer />
           <Main Page={Page} IsStarted={IsStarted} SetIsStarted={SetIsStarted} />
           <Footer />
-          <div id="overlay-message">
-            <div className="icon">
-              <SlSizeFullscreen color="white" />
-            </div>
-            <div>Screen too small, Please adjust your view.</div>
-          </div>
         </>
       )}
     </div>
